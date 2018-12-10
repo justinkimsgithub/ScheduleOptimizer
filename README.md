@@ -1,4 +1,4 @@
 # ScheduleOptimizer
 Frontend of ScheduleOptimizer
 
-run with ember serve
+run with ember surge
