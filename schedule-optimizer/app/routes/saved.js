@@ -10,7 +10,7 @@ export default Route.extend({
 
 		$('#content').html(`<div class="loader">Loading...</div>`);
 
-		$.get( "http://localhost:8080/ScheduleMaker/saved-schedules?email="+sessionStorage.getItem("email"), function(data) {
+		$.get( "http://localhost:8080/ScheduleMaker_ScheduleMaker/saved-schedules?email="+sessionStorage.getItem("email"), function(data) {
 			$('#content').html('');
 			console.log(data);
 

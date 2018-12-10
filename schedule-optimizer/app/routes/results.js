@@ -12,7 +12,7 @@ export default Route.extend({
 		$('#content').html(`<div class="loader">Loading...</div>`);
 
    		let courses = params.selected.split(",");
-		$.post( "http://localhost:8080/ScheduleMaker/query", JSON.stringify(courses), function(data) {
+		$.post( "http://localhost:8080/ScheduleMaker_ScheduleMaker/query", JSON.stringify(courses), function(data) {
 			$('#content').html('');
 
 
