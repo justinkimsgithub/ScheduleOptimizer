@@ -1,0 +1,219 @@
+<!-- Wrapper -->
+			<div id="wrapper">
+				
+				<!-- Header -->
+					<header id="header" class="alt">
+						<h1>SChedule Maker</h1>
+					</header>
+
+				<!-- Nav -->s
+					<nav id="nav">
+						<ul>
+							<li><a href="#first">Project Features</a></li>
+							<li><a href="#second">Profile</a></li>
+							<li><a href="#cta">Get Started</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<!-- First Section -->
+							<section id="first" class="main special">
+								<header class="major">
+									<h2>Project Features</h2>
+								</header>
+								<ul class="features">
+									<li>
+										<span class="icon major style1 fa-code"></span>
+										<h3>Create Schedules</h3>
+										<p>Ever get frustrated trying to fit all the classes you want to take without any schedule conflict? We can fix that for you. Just enter which courses you need to take, and we do all the hard work for you!</p>
+									</li>
+									<li>
+										<span class="icon major style3 fa-copy"></span>
+										<h3>Save Schedules</h3>
+										<p>With Google user login, you can save schedules that you like, to view at a later time!</p>
+									</li>
+									<li>
+										<span class="icon major style5 fa-diamond"></span>
+										<h3>Compare Schedules</h3>
+										<p>You can compare schedules that you have saved to see with one matches best to your preference!</p>
+									</li>
+								</ul>
+							</section>
+
+						<!-- Second Section -->
+							<section id="second" class="main special">
+								<header class="major">
+									<h2>Profile</h2>
+									<p>By creating a profile users are given access to additional features</p><br>
+									<div id="additionalFeatures">
+										<ul>
+											<li>Saving your preferred schedules</li>
+											<li>Comparing your saved schedules</li>
+										</ul>
+									</div>
+								</header>
+							</section>
+
+
+						<!-- Get Started -->
+							<section id="cta" class="main special">
+								<header class="major">
+									<h2>Get Started</h2>
+								</header>
+								<footer class="major">
+									<ul class="actions special">
+										<li>
+											<div class="g-signin2" data-onsuccess="onSignIn"></div>
+										</li>
+									</ul>
+									<div id="status">
+									</div>
+								</footer>
+							</section>
+							
+
+					</div>
+					<br>
+					<br>
+					<br>
+
+			</div>
+					<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+			<script>
+var email;
+function onSignIn(googleUser) {
+	
+	//Push.Permission.request();
+	
+	  var profile = googleUser.getBasicProfile();
+	  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+	  console.log('Name: ' + profile.getName());
+	  console.log('Image URL: ' + profile.getImageUrl());
+	  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+	  email = profile.getEmail();
+	  var fname = profile.getName().split(" ")[0];
+	  var name = profile.getName();
+	  document.getElementById('status').innerHTML =
+	        'Thanks for logging in, ' + fname + '!';
+	 var thisUser = {
+			 "email": email,
+			 "user" : {
+				 "friends": [],
+				 "name": [name],
+				 "savedSchedules": []
+			 }
+	 }
+	 var xhttp = new XMLHttpRequest();
+	  	xhttp.onreadystatechange = function(){
+	  		console.log("added user");
+	  		console.log(xhttp.responseText);
+	  	};
+	  	xhttp.open("POST", "register", true);
+	  	xhttp.send(JSON.stringify(thisUser));
+	  	
+	  	sessionStorage.setItem("email",email);
+	  	document.getElementById("seeSaved").href="saved-schedules?email="+email;
+  	  	console.log(document.getElementById("seeSaved").href);
+  	  	connectToServer();
+	}
+
+</script>
+
+
+
+<script type="text/javascript">
+    	document.addEventListener("DOMContentLoaded", function () {
+    		//console.log("H");
+    		var searchTerm = sessionStorage.getItem("SearchTerms")
+    		console.log("search Term Recieved by Triage @" + searchTerm);
+    		
+    		
+    		var requeststr = "search?";
+    		
+    		var email = sessionStorage.getItem("Email");
+    		var URL = sessionStorage.getItem("URL");	
+    		
+    		requeststr += "email=" + email;
+          	requeststr += "&query=" + searchTerm; 
+    		
+    		
+		    var xhttp = new XMLHttpRequest();
+	      	xhttp.open("GET", requeststr, true);
+	      	xhttp.send();
+	   
+	      	
+	      	console.log("Orders sent: " + requeststr);
+	      	
+	      	console.log("Outbound");
+	   
+    	})
+  </script>
+
+		<style>
+			nav a{
+				margin: 15px;
+				padding: 15px;
+			}
+			#top{
+				width: 100%;
+				text-align: center;
+				background-color: white;
+				color: black;
+				height: 60px;
+				font-size:2em;
+								display: flex;
+				flex-direction: column;
+			}
+			a:hover{
+				cursor: pointer;
+				color: black;
+			}
+			#additionalFeatures{
+				width: 40%;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			#members{
+				width: 20%;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			#seeSaved{
+				margin: 15px;
+				padding: 15px;
+			}
+			#seeSaved:hover{
+				cursor: pointer;
+				color: black;
+			}
+			#searchbar{
+				width:100%; 
+     			display: flex;
+				flex-direction: column;
+				justify-content:center;
+				align-items: center;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			#searchForm {
+    			margin: 0 0 2em 0;
+    			width: 30%;
+    			display: flex;
+			}
+			button{
+				height:44px;
+			}
+			#uniqueID{
+				margin-right: 10px;
+			}
+		</style>
+{{outlet}}

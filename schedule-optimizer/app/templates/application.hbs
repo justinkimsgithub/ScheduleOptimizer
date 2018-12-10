@@ -1,0 +1,102 @@
+	<header>
+		<title>Home</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+		<meta name="google-signin-client_id" content="73127643676-4obnu5s6ksumre6trttvtrdbdqj62kf4.apps.googleusercontent.com">
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css"/></noscript>
+
+		<style>
+			nav a{
+				margin: 15px;
+				padding: 15px;
+			}
+			#top{
+				width: 100%;
+				text-align: center;
+				background-color: white;
+				color: black;
+				height: 60px;
+				font-size:2em;
+								display: flex;
+				flex-direction: column;
+			}
+			a:hover{
+				cursor: pointer;
+				color: black;
+			}
+			#additionalFeatures{
+				width: 40%;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			#members{
+				width: 20%;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			#seeSaved{
+				margin: 15px;
+				padding: 15px;
+			}
+			#seeSaved:hover{
+				cursor: pointer;
+				color: black;
+			}
+			#searchbar{
+				width:100%; 
+     			display: flex;
+				flex-direction: column;
+				justify-content:center;
+				align-items: center;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			#searchForm {
+    			margin: 0 0 2em 0;
+    			width: 30%;
+    			display: flex;
+			}
+			button{
+				height:44px;
+			}
+			#uniqueID{
+				margin-right: 10px;
+			}
+		</style>
+	</header>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/push.js/0.0.11/push.min.js"></script>
+
+
+<body class="is-preload">
+
+			<nav id="top">
+				<ul>
+						{{#link-to "index"}}
+						Home
+						{{/link-to}}
+
+						{{#link-to "create"}}
+						Create a Schedule
+						{{/link-to}}
+				
+						{{#link-to "saved"}}
+						Saved Schedules
+						{{/link-to}}
+				</ul>
+			</nav>
+
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+
+{{outlet}}
